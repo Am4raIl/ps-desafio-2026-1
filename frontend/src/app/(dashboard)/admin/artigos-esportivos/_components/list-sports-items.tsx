@@ -18,7 +18,7 @@ import { DialogSportsItemDelete } from './dialog-delete-sports-item'
 import { DialogInformationSportsItem } from './dialog-information-sports-item'
 import { DialogCreateSportsItem } from './dialog-create-sports-item'
 
-export default async function ListProperties() {
+export default async function ListSportsItems() {
   const { response } = null // requisicao para api
 
   if (!response) {

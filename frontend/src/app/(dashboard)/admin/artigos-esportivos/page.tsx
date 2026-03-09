@@ -5,7 +5,7 @@ import {
   DashboardMain,
 } from '@/components/dashboard/dashboard-items'
 import { MdOutlineSportsHandball } from "react-icons/md";
-import ListProperties from './_components/list-sports-items';
+import ListSportsItems from './_components/list-sports-items';
 import { Suspense } from 'react'
 
 export default async function Page() {
@@ -22,7 +22,7 @@ export default async function Page() {
       </DashboardHeader>
       <DashboardMain>
         <Suspense>
-          <ListProperties />
+          <ListSportsItems />
         </Suspense>
       </DashboardMain>
     </>
