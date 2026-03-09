@@ -1,0 +1,94 @@
+import { DashboardContainer } from '@/components/dashboard/dashboard-items'
+import {
+  TabbleCellImage,
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/dashboard/table'
+import { api } from '@/services/api'
+import { propertyType } from '@/types/property'
+import { Button } from '@/components/button'
+import { LuInfo, LuPen, LuPlusCircle, LuTrash } from 'react-icons/lu'
+import { DialogUpdateProperty } from './dialog-update-property'
+import { DialogPropertyDelete } from './dialog-delete-property'
+import { DialogInformationProperty } from './dialog-information-property'
+import { DialogCreateProperty } from './dialog-create-property'
+
+export default async function ListProperties() {
+  const { response } = null // requisicao para api
+
+  if (!response) {
+    return (
+      <DashboardContainer className="text-destructive">
+        Não foi possível obter os imóveis.
+      </DashboardContainer>
+    )
+  }
+
+  const properties: propertyType[] = response
+
+  return (
+    <>
+      <DashboardContainer className="flex h-min justify-between space-x-0 gap-y-2.5 max-sm:flex-col">
+        <DialogCreateProperty>
+          <Button size="sm">
+            <LuPlusCircle />
+            Novo imóvel
+          </Button>
+        </DialogCreateProperty>
+      </DashboardContainer>
+      <DashboardContainer>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Imagem</TableHead>
+              <TableHead>Titulo</TableHead>
+              <TableHead>Categoria</TableHead>
+              <TableHead>Quantidade</TableHead>
+              <TableHead className="text-right">Ações</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {properties?.map((property: propertyType) => (
+              <TableRow key={property.id}>
+                <TableCell>
+                  <TabbleCellImage src={property.image} />
+                </TableCell>
+                
+                <TableCell>{property.title}</TableCell>
+                <TableCell>{property.amount}</TableCell>
+                <TableCell>{property.category.name}</TableCell>
+                {/* demais propriedades de propertyType */}
+                
+                <TableCell className="flex justify-end gap-2">
+                  <DialogInformationProperty id={property.id}>
+                    <Button variant="default-inverse" size="icon">
+                      <LuInfo />
+                    </Button>
+                  </DialogInformationProperty>
+                  <DialogUpdateProperty id={property.id}>
+                    <Button variant="secondary-inverse" size="icon">
+                      <LuPen />
+                    </Button>
+                  </DialogUpdateProperty>
+                  <DialogPropertyDelete id={property.id}>
+                    <Button variant="destructive-inverse" size="icon">
+                      <LuTrash />
+                    </Button>
+                  </DialogPropertyDelete>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+          {!properties.length && (
+            <TableCaption>Nenhum imóvel encontrado.</TableCaption>
+          )}
+        </Table>
+      </DashboardContainer>
+    </>
+  )
+}
