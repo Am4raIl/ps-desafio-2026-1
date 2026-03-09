@@ -10,13 +10,13 @@ import {
   TableRow,
 } from '@/components/dashboard/table'
 import { api } from '@/services/api'
-import { propertyType } from '@/types/property'
+import { sportsItemType } from '@/types/sportsItem'
 import { Button } from '@/components/button'
 import { LuInfo, LuPen, LuPlusCircle, LuTrash } from 'react-icons/lu'
-import { DialogUpdateProperty } from './dialog-update-property'
-import { DialogPropertyDelete } from './dialog-delete-property'
-import { DialogInformationProperty } from './dialog-information-property'
-import { DialogCreateProperty } from './dialog-create-property'
+import { DialogUpdateSportsItem } from './dialog-update-sports-item'
+import { DialogSportsItemDelete } from './dialog-delete-sports-item'
+import { DialogInformationSportsItem } from './dialog-information-sports-item'
+import { DialogCreateSportsItem } from './dialog-create-sports-item'
 
 export default async function ListProperties() {
   const { response } = null // requisicao para api
@@ -29,17 +29,17 @@ export default async function ListProperties() {
     )
   }
 
-  const properties: propertyType[] = response
+  const sportsItems: sportsItemType[] = response
 
   return (
     <>
       <DashboardContainer className="flex h-min justify-between space-x-0 gap-y-2.5 max-sm:flex-col">
-        <DialogCreateProperty>
+        <DialogCreateSportsItem>
           <Button size="sm">
             <LuPlusCircle />
-            Novo imóvel
+            Novo artigo esportivo
           </Button>
-        </DialogCreateProperty>
+        </DialogCreateSportsItem>
       </DashboardContainer>
       <DashboardContainer>
         <Table>
@@ -53,39 +53,39 @@ export default async function ListProperties() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {properties?.map((property: propertyType) => (
-              <TableRow key={property.id}>
+            {sportsItems?.map((sportsItem: sportsItemType) => (
+              <TableRow key={sportsItem.id}>
                 <TableCell>
-                  <TabbleCellImage src={property.image} />
+                  <TabbleCellImage src={sportsItem.image} />
                 </TableCell>
                 
-                <TableCell>{property.title}</TableCell>
-                <TableCell>{property.amount}</TableCell>
-                <TableCell>{property.category.name}</TableCell>
-                {/* demais propriedades de propertyType */}
+                <TableCell>{sportsItem.title}</TableCell>
+                <TableCell>{sportsItem.amount}</TableCell>
+                <TableCell>{sportsItem.category.name}</TableCell>
+                {/* demais propriedades de sportsItemType */}
                 
                 <TableCell className="flex justify-end gap-2">
-                  <DialogInformationProperty id={property.id}>
+                  <DialogInformationSportsItem id={sportsItem.id}>
                     <Button variant="default-inverse" size="icon">
                       <LuInfo />
                     </Button>
-                  </DialogInformationProperty>
-                  <DialogUpdateProperty id={property.id}>
+                  </DialogInformationSportsItem>
+                  <DialogUpdateSportsItem id={sportsItem.id}>
                     <Button variant="secondary-inverse" size="icon">
                       <LuPen />
                     </Button>
-                  </DialogUpdateProperty>
-                  <DialogPropertyDelete id={property.id}>
+                  </DialogUpdateSportsItem>
+                  <DialogSportsItemDelete id={sportsItem.id}>
                     <Button variant="destructive-inverse" size="icon">
                       <LuTrash />
                     </Button>
-                  </DialogPropertyDelete>
+                  </DialogSportsItemDelete>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
-          {!properties.length && (
-            <TableCaption>Nenhum imóvel encontrado.</TableCaption>
+          {!sportsItems.length && (
+            <TableCaption>Nenhum artigo esportivo encontrado.</TableCaption>
           )}
         </Table>
       </DashboardContainer>

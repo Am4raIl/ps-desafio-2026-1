@@ -8,23 +8,23 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/dialog'
-import FormFieldsProperty from './form-fields-property'
-import { propertyType } from '@/types/property'
+import FormFieldsSportsItem from './form-fields-sports-item'
+import { sportsItemType } from '@/types/sportsItem'
 import { api } from '@/services/api'
 import { useEffect, useState } from 'react'
 import { useToast } from '@/components/use-toast'
 
-interface DialogInformationPropertyProps {
+interface DialogInformationSportsItemProps {
   id: string
   children: React.ReactNode
   isInformation?: boolean
 }
 
-export function DialogInformationProperty({
+export function DialogInformationSportsItem({
   id,
   children,
-}: DialogInformationPropertyProps) {
-  const [property, setProperty] = useState<propertyType | null>(null)
+}: DialogInformationSportsItemProps) {
+  const [sportsItem, setSportsItem] = useState<sportsItemType | null>(null)
   const [open, setOpen] = useState<boolean>()
   const { toast } = useToast()
 
@@ -33,11 +33,11 @@ export function DialogInformationProperty({
       const { response } = null
 
       if (response) {
-        setProperty(response)
+        setSportsItem(response)
       } else {
-        setProperty(null)
+        setSportsItem(null)
         toast({
-          title: 'Veículo não encontrado!',
+          title: 'Artigo esportivo não encontrado!',
         })
         setOpen(false)
       }
@@ -45,7 +45,7 @@ export function DialogInformationProperty({
 
     requestData()
 
-    return () => setProperty(null)
+    return () => setSportsItem(null)
   }, [id, open, toast])
 
   return (
@@ -53,12 +53,12 @@ export function DialogInformationProperty({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Informações do imóvel</DialogTitle>
+          <DialogTitle>Informações do artigo esportivo</DialogTitle>
           <DialogDescription>
-            Visualize as informações detalhadas do imóvel abaixo.
+            Visualize as informações detalhadas do artigo esportivo abaixo.
           </DialogDescription>
         </DialogHeader>
-        <FormFieldsProperty property={property} readOnly />
+        <FormFieldsSportsItem sportsItem={sportsItem} readOnly />
       </DialogContent>
     </Dialog>
   )

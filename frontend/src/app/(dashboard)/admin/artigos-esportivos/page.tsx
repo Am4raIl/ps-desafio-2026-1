@@ -4,8 +4,8 @@ import {
   DashboardHeaderTitle,
   DashboardMain,
 } from '@/components/dashboard/dashboard-items'
-import { FaCarAlt } from "react-icons/fa";
-import ListProperties from './_components/list-properties';
+import { MdOutlineSportsHandball } from "react-icons/md";
+import ListProperties from './_components/list-sports-items';
 import { Suspense } from 'react'
 
 export default async function Page() {
@@ -13,11 +13,11 @@ export default async function Page() {
     <>
       <DashboardHeader>
         <DashboardHeaderTitle>
-        <FaCarAlt />
-          Imóveis
+        <MdOutlineSportsHandball />
+          Artigos Esportivos
         </DashboardHeaderTitle>
         <DashboardHeaderDescription>
-          Cadastre, edite, visualize e exclua imóveis.
+          Cadastre, edite, visualize e exclua artigos esportivos.
         </DashboardHeaderDescription>
       </DashboardHeader>
       <DashboardMain>

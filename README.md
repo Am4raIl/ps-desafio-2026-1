@@ -1,4 +1,4 @@
-# PS Desafio 2025/2
+# PS Desafio 2026/1
 
 ## Iniciando projeto
 
@@ -34,6 +34,7 @@ Dentro da pasta `backend` siga as seguintes instruções.
    ```bash
    php artisan migrate --seed
    ```
+
    1. Caso as migrations já tenham sido rodadas anteriormente no seu banco de dados, execute o comando:
       ```bash
       php artisan migrate:fresh --seed
@@ -42,6 +43,7 @@ Dentro da pasta `backend` siga as seguintes instruções.
    ```bash
    php artisan serve
    ```
+
    1. O servidor **backend** será iniciado por padrão no endereço `http://127.0.0.1:8000`.
 
 ### React.js/Next.js
@@ -62,4 +64,5 @@ Dentro da pasta `frontend` siga as seguintes instruções.
    ```bash
    pnpm dev
    ```
+
    1. O servidor **frontend** será iniciado por padrão no endereço `http://127.0.0.1:3000`.

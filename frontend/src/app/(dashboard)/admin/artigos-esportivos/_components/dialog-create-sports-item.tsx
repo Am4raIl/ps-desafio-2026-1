@@ -8,18 +8,18 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/dialog'
-import FormFieldsProperty from './form-fields-property'
-import { createProperty } from '@/actions/property'
+import FormFieldsSportsItem from './form-fields-sports-item'
+import { createSportsItem } from '@/actions/sportsItem'
 import { filterFormData } from '@/services/filter-form-data'
 import { useEffect, useState } from 'react'
 import { useToast } from '@/components/use-toast'
 import { ResponseErrorType } from '@/services/api'
 
-interface DialogCreatePropertyProps {
+interface DialogCreateSportsItemProps {
   children: React.ReactNode
 }
 
-export function DialogCreateProperty({ children }: DialogCreatePropertyProps) {
+export function DialogCreateSportsItem({ children }: DialogCreateSportsItemProps) {
   const [open, setOpen] = useState<boolean>()
   const [error, setError] = useState<ResponseErrorType | null>(null)
   const { toast } = useToast()
@@ -33,16 +33,16 @@ export function DialogCreateProperty({ children }: DialogCreatePropertyProps) {
   const submit = async (form: FormData) => {
     const newForm = await filterFormData(form)
 
-    const { error } = await JSON.parse(await createProperty(newForm))
+    const { error } = await JSON.parse(await createSportsItem(newForm))
 
     if (error) {
       setError(error)
       toast({
-        title: 'Não foi possível criar o imóvel!',
+        title: 'Não foi possível criar o artigo esportivo!',
       })
     } else {
       toast({
-        title: 'Imóvel criado com sucesso!',
+        title: 'Artigo esportivo criado com sucesso!',
       })
       setOpen(false)
     }
@@ -53,14 +53,14 @@ export function DialogCreateProperty({ children }: DialogCreatePropertyProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Adicionar imóvel</DialogTitle>
+          <DialogTitle>Adicionar artigo esportivo</DialogTitle>
           <DialogDescription>
-            Preencha as informações do novo imóvel abaixo e clique em
+            Preencha as informações do novo artigo esportivo abaixo e clique em
             &rdquo;Salvar&rdquo; para incluí-lo no sistema.
           </DialogDescription>
         </DialogHeader>
         <form action={submit}>
-          <FormFieldsProperty error={error} />
+          <FormFieldsSportsItem error={error} />
         </form>
       </DialogContent>
     </Dialog>

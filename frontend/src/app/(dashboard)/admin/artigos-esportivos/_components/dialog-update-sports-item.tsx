@@ -8,35 +8,35 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/dialog'
-import FormFieldsProperty from './form-fields-property'
-import { updateProperty } from '@/actions/property'
+import FormFieldsSportsItem from './form-fields-sports-item'
+import { updateSportsItem } from '@/actions/sportsItem'
 import { filterFormData } from '@/services/filter-form-data'
 import { useEffect, useState } from 'react'
 import { useToast } from '@/components/use-toast'
-import { propertyType } from '@/types/property'
+import { sportsItemType } from '@/types/sportsItem'
 import { ResponseErrorType, api } from '@/services/api'
 
-interface DialogUpdatePropertyProps {
+interface DialogUpdateSportsItemProps {
   id: string
   children: React.ReactNode
 }
 
-export function DialogUpdateProperty({ id, children }: DialogUpdatePropertyProps) {
-  const [property, setProperty] = useState<propertyType | null>(null)
+export function DialogUpdateSportsItem({ id, children }: DialogUpdateSportsItemProps) {
+  const [sportsItem, setSportsItem] = useState<sportsItemType | null>(null)
   const [open, setOpen] = useState<boolean>()
   const [error, setError] = useState<ResponseErrorType | null>(null)
   const { toast } = useToast()
 
   useEffect(() => {
     const requestData = async () => {
-      const { response } = await api<propertyType>('GET', `/properties/${id}`)
+      const { response } = await api<sportsItemType>('GET', `/sports-items/${id}`)
 
       if (response) {
-        setProperty(response)
+        setSportsItem(response)
       } else {
-        setProperty(null)
+        setSportsItem(null)
         toast({
-          title: 'Imóvel  não encontrado!',
+          title: 'Artigo esportivo  não encontrado!',
         })
         setOpen(false)
       }
@@ -45,7 +45,7 @@ export function DialogUpdateProperty({ id, children }: DialogUpdatePropertyProps
     requestData()
 
     return () => {
-      setProperty(null)
+      setSportsItem(null)
       setError(null)
     }
   }, [id, open, toast])
@@ -58,11 +58,11 @@ export function DialogUpdateProperty({ id, children }: DialogUpdatePropertyProps
     if (error) {
       setError(error)
       toast({
-        title: 'Não foi possível editar o imóvel!',
+        title: 'Não foi possível editar o artigo esportivo!',
       })
     } else {
       toast({
-        title: 'Imóvel editado com sucesso!',
+        title: 'Artigo esportivo editado com sucesso!',
       })
       setOpen(false)
     }
@@ -73,14 +73,14 @@ export function DialogUpdateProperty({ id, children }: DialogUpdatePropertyProps
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Editar imóvel</DialogTitle>
+          <DialogTitle>Editar artigo esportivo</DialogTitle>
           <DialogDescription>
-            Atualize as informações do imóvel abaixo e clique em
+            Atualize as informações do artigo esportivo abaixo e clique em
             &quot;Salvar&quot; para aplicar as alterações.
           </DialogDescription>
         </DialogHeader>
         <form action={submit}>
-          <FormFieldsProperty error={error} property={property} />
+          <FormFieldsSportsItem error={error} sportsItem={sportsItem} />
         </form>
       </DialogContent>
     </Dialog>

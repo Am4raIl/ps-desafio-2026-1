@@ -4,14 +4,14 @@ import {
   DashboardHeaderTitle,
   DashboardMain,
 } from '@/components/dashboard/dashboard-items'
-import { BsGraphUp } from "react-icons/bs";
+import { MdSports } from "react-icons/md";
 
 export default function Page() {
   return (
     <>
       <DashboardHeader>
         <DashboardHeaderTitle>
-          <BsGraphUp />
+          <MdSports />
           Home
         </DashboardHeaderTitle>
         <DashboardHeaderDescription>

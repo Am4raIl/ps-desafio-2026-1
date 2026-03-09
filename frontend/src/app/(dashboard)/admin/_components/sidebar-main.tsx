@@ -15,9 +15,9 @@ import { LuHome, LuLogOut, LuUsers } from 'react-icons/lu'
 import { DropdownMenuItem } from '@/components/dropdown-menu'
 import { signOut, useSession } from 'next-auth/react'
 import logo from '@/assets/img/logo.jpeg'
-import { MdOutlineHomeWork } from "react-icons/md";
 import { TbCategory } from "react-icons/tb";
 import { VscGraph } from "react-icons/vsc";
+import { MdOutlineSportsHandball } from "react-icons/md";
 
 export function SidebarMain() {
   const session = useSession()
@@ -38,9 +38,9 @@ export function SidebarMain() {
           <LuUsers />
           <SidebarNavLinkLabel>Usuários</SidebarNavLinkLabel>
         </SidebarNavLink>
-        <SidebarNavLink href="/admin/imoveis">
-          <MdOutlineHomeWork />
-          <SidebarNavLinkLabel>Imóveis</SidebarNavLinkLabel>
+        <SidebarNavLink href="/admin/artigos-esportivos">
+          <MdOutlineSportsHandball />
+          <SidebarNavLinkLabel>Artigos Esportivos</SidebarNavLinkLabel>
         </SidebarNavLink>
         <SidebarNavLink href="/admin/categorias">
           <TbCategory />
