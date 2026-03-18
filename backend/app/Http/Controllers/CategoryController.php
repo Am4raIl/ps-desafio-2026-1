@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function index():JsonResponse
     {
-        $categories = $this->category->all();
+        $categories = $this->category->with('sportingGoods')->get();
         return response()->json($categories, Response::HTTP_OK);
     }
 
