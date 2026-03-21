@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Throwable;
 
 class SportingGoods extends Model
 {
@@ -24,5 +25,14 @@ class SportingGoods extends Model
 
     public function category(){
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    protected static function booted(){
+        self::deleted(function(SportingGoods $sportingGoods){
+            try{
+                $image_name = explode('sporting_goods/', $sportingGoods['image']);
+                Storage::disk('public')->delete('sporting_goods/'.$image_name[1]);
+            }catch(Throwable){}
+        });
     }
 }

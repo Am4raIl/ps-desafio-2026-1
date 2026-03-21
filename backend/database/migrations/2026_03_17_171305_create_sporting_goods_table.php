@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('brand');
             $table->decimal('price', 10, 2);
-            $table->year('release_year');
+            $table->integer('release_year');
             $table->string('image')->nullable();
             $table->foreignUuid('category_id')->constrained('categories');
             $table->integer('quantity');

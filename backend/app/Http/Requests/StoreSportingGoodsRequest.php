@@ -25,7 +25,7 @@ class StoreSportingGoodsRequest extends FormRequest
             'name' => ['required', 'min:3', 'max:100', 'string'],
             'brand' => ['required', 'min:3', 'max:100', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
-            'release_year' => ['required'],
+            'release_year' => ['required', 'numeric', 'digits:4', 'max:' .date('Y')],
             'image' => ['file'],
             'category_id' => ['required'],
             'quantity' => ['required', 'integer', 'min:0'],
