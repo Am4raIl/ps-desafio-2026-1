@@ -25,7 +25,7 @@ class UpdateSportingGoodsRequest extends FormRequest
             'name' => ['sometimes', 'min:3', 'max:100', 'string'],
             'brand' => ['sometimes', 'min:3', 'max:100', 'string'],
             'price' => ['sometimes', 'numeric', 'min:0'],
-            'release_year' => ['sometimes'],
+            'release_year' => ['sometimes', 'numeric', 'digits:4', 'max:' .date('Y')],
             'image' => ['file'],
             'category_id' => ['sometimes'],
             'quantity' => ['sometimes', 'integer', 'min:0'],
