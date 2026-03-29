@@ -47,8 +47,6 @@ export function DialogInformationSportsItem({
 
     requestData()
     console.log(sportsItem)
-
-    // return () => setSportsItem(null)
   }, [id, open, toast])
 
   return (

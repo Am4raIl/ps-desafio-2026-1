@@ -45,11 +45,6 @@ export function DialogUpdateSportsItem({ id, children }: DialogUpdateSportsItemP
     }
 
     requestData()
-
-    // return () => {
-    //   setSportsItem(null)
-    //   setError(null)
-    // }
   }, [id, open, toast])
 
   const submit = async (form: FormData) => {

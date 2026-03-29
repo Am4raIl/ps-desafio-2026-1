@@ -40,8 +40,6 @@ export default function ListCategory() {
     )
   }
 
-  
-
   return (
     <>
       <DashboardContainer className="flex h-min justify-between space-x-0 gap-y-2.5 max-sm:flex-col">

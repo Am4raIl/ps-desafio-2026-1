@@ -27,7 +27,6 @@ export default function ListSportsItems() {
   useEffect(() => {
     async function getSportingGoods() {
       const { response, error } = await api('GET', '/sporting-goods')
-      console.log('Dados brutos da API:', response)
       if (response) setSportingGoods(response as sportsItemType[]);
       else console.error(error?.message)
     }

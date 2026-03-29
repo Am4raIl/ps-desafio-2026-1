@@ -58,7 +58,6 @@ export function DialogUpdateCategory({
 
   const submit = async (form: FormData) => {
     const newForm = await filterFormData(form)
-
     const { error } = await JSON.parse(await updateCategory(newForm))
 
     if (error) {

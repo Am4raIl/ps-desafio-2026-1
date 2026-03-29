@@ -32,7 +32,6 @@ export function DialogCreateSportsItem({ children }: DialogCreateSportsItemProps
 
   const submit = async (form: FormData) => {
     const newForm = await filterFormData(form)
-
     const { error } = await JSON.parse(await createSportsItem(newForm))
 
     if (error) {

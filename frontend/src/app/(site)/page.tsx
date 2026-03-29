@@ -1,3 +1,4 @@
+import Footer from './_components/Footer'
 import Banner from './_components/Banner'
 import Products from './_components/Products'
 import Searchbar from './_components/Searchbar'
@@ -13,6 +14,7 @@ export default function Home() {
       </h1>
       <Searchbar />
       <Products />
+      <Footer />
     </div>
   )
 }
