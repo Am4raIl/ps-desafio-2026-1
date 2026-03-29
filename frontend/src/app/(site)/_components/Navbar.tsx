@@ -1,11 +1,10 @@
-import Link from "next/link";
-import styles from "./Navbar.module.css";
+import Link from 'next/link'
+import styles from './Navbar.module.css'
 
 export default function Navbar() {
   return (
     <header className={styles.navbar}>
       <div className={styles.container}>
-
         <div className={styles.left}>
           <Link href="/" className={styles.brandName}>
             Fox<b>Store</b>
@@ -21,15 +20,14 @@ export default function Navbar() {
         </div>
 
         <nav className={styles.right}>
-          <Link href="/login" className={styles.btnLogin}>
+          <Link href="/admin" className={styles.loginButton}>
             Login
           </Link>
-          <Link href="/cadastro" className={styles.btnSignup}>
+          <Link href="/" className={styles.signupButton}>
             Cadastrar
           </Link>
         </nav>
-
       </div>
     </header>
-  );
+  )
 }

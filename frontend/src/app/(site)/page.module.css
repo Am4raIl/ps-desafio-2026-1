@@ -1,0 +1,15 @@
+.phrase {
+    font-size: 3rem;
+    color: #002d5f;
+    margin: 40px 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+@media (max-width: 600px){
+    .phrase{
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+}

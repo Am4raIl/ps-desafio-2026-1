@@ -1,3 +1,5 @@
+'use client'
+
 import { DashboardContainer } from '@/components/dashboard/dashboard-items'
 import {
   TabbleCellImage,
@@ -12,31 +14,40 @@ import {
 import { api } from '@/services/api'
 import { sportsItemType } from '@/types/sportsItem'
 import { Button } from '@/components/button'
-import { LuInfo, LuPen, LuPlusCircle, LuTrash } from 'react-icons/lu'
+import { LuInfo, LuPen, LuPlus, LuTrash } from 'react-icons/lu'
 import { DialogUpdateSportsItem } from './dialog-update-sports-item'
 import { DialogSportsItemDelete } from './dialog-delete-sports-item'
 import { DialogInformationSportsItem } from './dialog-information-sports-item'
 import { DialogCreateSportsItem } from './dialog-create-sports-item'
+import { useEffect, useState } from 'react'
 
-export default async function ListSportsItems() {
-  const { response } = null // requisicao para api
+export default function ListSportsItems() {
+  const [sportingGoods, setSportingGoods] = useState<sportsItemType[]>([])
 
-  if (!response) {
+  useEffect(() => {
+    async function getSportingGoods() {
+      const { response, error } = await api('GET', '/sporting-goods')
+      console.log('Dados brutos da API:', response)
+      if (response) setSportingGoods(response as sportsItemType[]);
+      else console.error(error?.message)
+    }
+    getSportingGoods()
+  }, [])
+
+  if (!sportingGoods) {
     return (
       <DashboardContainer className="text-destructive">
-        Não foi possível obter os imóveis.
+        Não foi possível obter os artigos esportivos.
       </DashboardContainer>
     )
   }
-
-  const sportsItems: sportsItemType[] = response
 
   return (
     <>
       <DashboardContainer className="flex h-min justify-between space-x-0 gap-y-2.5 max-sm:flex-col">
         <DialogCreateSportsItem>
           <Button size="sm">
-            <LuPlusCircle />
+            <LuPlus />
             Novo artigo esportivo
           </Button>
         </DialogCreateSportsItem>
@@ -46,24 +57,28 @@ export default async function ListSportsItems() {
           <TableHeader>
             <TableRow>
               <TableHead>Imagem</TableHead>
-              <TableHead>Titulo</TableHead>
-              <TableHead>Categoria</TableHead>
+              <TableHead>Nome</TableHead>
+              <TableHead>Marca</TableHead>
+              <TableHead>Preço</TableHead>
+              <TableHead>Ano</TableHead>
               <TableHead>Quantidade</TableHead>
+              <TableHead>Categoria</TableHead>
               <TableHead className="text-right">Ações</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {sportsItems?.map((sportsItem: sportsItemType) => (
+            {sportingGoods?.map((sportsItem: sportsItemType) => (
               <TableRow key={sportsItem.id}>
                 <TableCell>
                   <TabbleCellImage src={sportsItem.image} />
                 </TableCell>
-                
-                <TableCell>{sportsItem.title}</TableCell>
-                <TableCell>{sportsItem.amount}</TableCell>
-                <TableCell>{sportsItem.category.name}</TableCell>
-                {/* demais propriedades de sportsItemType */}
-                
+                <TableCell>{sportsItem.name}</TableCell>
+                <TableCell>{sportsItem.brand}</TableCell>
+                <TableCell>{sportsItem.price}</TableCell>
+                <TableCell>{sportsItem.release_year}</TableCell>
+                <TableCell>{sportsItem.quantity}</TableCell>
+                <TableCell>{sportsItem.category.name || 'Nenhuma'}</TableCell>
+
                 <TableCell className="flex justify-end gap-2">
                   <DialogInformationSportsItem id={sportsItem.id}>
                     <Button variant="default-inverse" size="icon">
@@ -84,7 +99,7 @@ export default async function ListSportsItems() {
               </TableRow>
             ))}
           </TableBody>
-          {!sportsItems.length && (
+          {!sportingGoods.length && (
             <TableCaption>Nenhum artigo esportivo encontrado.</TableCaption>
           )}
         </Table>

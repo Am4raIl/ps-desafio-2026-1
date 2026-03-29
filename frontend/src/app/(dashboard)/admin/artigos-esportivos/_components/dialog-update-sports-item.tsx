@@ -28,8 +28,10 @@ export function DialogUpdateSportsItem({ id, children }: DialogUpdateSportsItemP
   const { toast } = useToast()
 
   useEffect(() => {
+    if(!open) return
+    setSportsItem(null)
     const requestData = async () => {
-      const { response } = await api<sportsItemType>('GET', `/sports-items/${id}`)
+      const { response } = await api<sportsItemType>('GET', `/sporting-goods/${id}`)
 
       if (response) {
         setSportsItem(response)
@@ -44,16 +46,16 @@ export function DialogUpdateSportsItem({ id, children }: DialogUpdateSportsItemP
 
     requestData()
 
-    return () => {
-      setSportsItem(null)
-      setError(null)
-    }
+    // return () => {
+    //   setSportsItem(null)
+    //   setError(null)
+    // }
   }, [id, open, toast])
 
   const submit = async (form: FormData) => {
     const newForm = await filterFormData(form)
 
-    const { error } = null 
+    const { error } = await JSON.parse(await updateSportsItem(newForm))
 
     if (error) {
       setError(error)
@@ -80,7 +82,12 @@ export function DialogUpdateSportsItem({ id, children }: DialogUpdateSportsItemP
           </DialogDescription>
         </DialogHeader>
         <form action={submit}>
-          <FormFieldsSportsItem error={error} sportsItem={sportsItem} />
+          {sportsItem && (
+            <FormFieldsSportsItem
+              error={error}
+              sportsItem={sportsItem}
+            />
+          )}
         </form>
       </DialogContent>
     </Dialog>

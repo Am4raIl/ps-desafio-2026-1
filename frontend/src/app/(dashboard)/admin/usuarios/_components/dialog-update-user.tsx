@@ -28,6 +28,8 @@ export function DialogUpdateUser({ id, children }: DialogUpdateUserProps) {
   const { toast } = useToast()
 
   useEffect(() => {
+    if(!open) return
+    setUser(null)
     const requestData = async () => {
       const { response } = await api<userType>('GET', `/users/${id}`)
 

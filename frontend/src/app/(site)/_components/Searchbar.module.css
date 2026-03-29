@@ -1,0 +1,159 @@
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 850px;
+  margin-bottom: 4.5rem;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.searchInput {
+  flex: 1;
+  display: flex;
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 100px;
+  box-shadow: 0 10px 30px rgba(0, 44, 95, 0.293);
+  transition: transform 0.3s ease;
+}
+
+.searchInput:hover {
+  transform: scale(1.02);
+}
+
+.input {
+  flex: 1;
+  outline: none;
+  padding: 0 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  background: transparent;
+  color: #0a1128;
+  min-width: 0;
+}
+
+.searchButton {
+  background: #002d5f;
+  color: #ffffff;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.searchButton:hover {
+  background: #0056b3;
+}
+
+.filterContainer {
+  position: relative;
+  z-index: 1000;
+}
+
+.filterButton {
+  background: #ffffff;
+  color: #002d5f;
+  border: none;
+  padding: 15px 22px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 20px rgba(0, 44, 95, 0.07);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.filterButton:hover {
+  background: #002d5f;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.dropdown {
+  position: absolute;
+  top: 120%;
+  background: #ffffff;
+  min-width: 180px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 44, 95, 0.15);
+  visibility: hidden;
+  transition: visibility 0.2s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.filterContainer:hover .dropdown {
+  visibility: visible;
+}
+
+.dropdownAberto {
+  visibility: visible
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #002d5f;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: background 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.dropdown a:hover {
+  background: #f0f4f9;
+  color: #0056b3;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 36px 16px;
+  }
+
+  .searchContainer {
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 100%; 
+  } 
+
+  .searchInput {
+    width: 100%; 
+  }
+
+  .input {
+    font-size: 0.85rem; 
+    padding: 0 10px; 
+  }
+
+  .searchButton {
+    padding: 10px 16px; 
+    font-size: 0.75rem;
+  }
+
+  .filterContainer {
+    width: 50%;
+  }
+
+  .filterButton {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  .filterButton:hover{
+    transform: scale(1.02);
+  }
+
+  .dropdown {
+    width: 100%;
+    border-radius: 12px;
+  }
+}

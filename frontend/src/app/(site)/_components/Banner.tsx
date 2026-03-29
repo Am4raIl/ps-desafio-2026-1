@@ -1,4 +1,4 @@
-import styles from "./Banner.module.css";
+import styles from './Banner.module.css'
 
 export default function Banner() {
   return (
@@ -9,5 +9,5 @@ export default function Banner() {
         className={styles.bannerImg}
       />
     </section>
-  );
+  )
 }

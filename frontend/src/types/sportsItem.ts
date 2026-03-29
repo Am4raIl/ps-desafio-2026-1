@@ -1,3 +1,14 @@
+import { categoryType } from "./category"
+
 export type sportsItemType = {
-    // criar types
+    id: string,
+    name: string,
+    brand: string,
+    price: number,
+    release_year: number,
+    image: string,
+    category: categoryType,
+    quantity: number
+    created_at: Date,
+    updated_at: Date
 }

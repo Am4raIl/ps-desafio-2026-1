@@ -29,11 +29,12 @@ export function DialogInformationSportsItem({
   const { toast } = useToast()
 
   useEffect(() => {
+    if(!open) return
+    setSportsItem(null)
     const requestData = async () => {
-      const { response } = null
-
+      const { response } = await api<sportsItemType>('GET', `/sporting-goods/${id}`)
       if (response) {
-        setSportsItem(response)
+        setSportsItem(response as sportsItemType)
       } else {
         setSportsItem(null)
         toast({
@@ -41,11 +42,13 @@ export function DialogInformationSportsItem({
         })
         setOpen(false)
       }
+      console.log(sportsItem)
     }
 
     requestData()
+    console.log(sportsItem)
 
-    return () => setSportsItem(null)
+    // return () => setSportsItem(null)
   }, [id, open, toast])
 
   return (
