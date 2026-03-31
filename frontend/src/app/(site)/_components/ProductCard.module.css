@@ -13,14 +13,14 @@
   box-shadow: 0 24px 50px rgba(0, 45, 95, 0.13);
 }
 
-.imageWrapper {
+.imageCard {
   position: relative;
   width: 100%;
   padding-top: 75%;
   overflow: hidden;
 }
 
-.imageWrapper img {
+.imageCard img {
   position: absolute;
   top: 0;
   width: 100%;
@@ -29,7 +29,7 @@
   transition: transform 0.4s ease;
 }
 
-.card:hover .imageWrapper img {
+.card:hover .imageCard img {
   transform: scale(1.04);
 }
 
@@ -112,7 +112,7 @@
   color: #0a1128;
 }
 
-.buyBtn {
+.buyButton {
   width: 100%;
   padding: 12px;
   border: none;
@@ -127,13 +127,13 @@
   margin-top: auto;
 }
 
-.buyBtn:disabled {
+.buyButton:disabled {
   background: #cccccc;
   color: #666666;
   cursor: not-allowed;
 }
 
-.buyBtn:hover {
+.buyButton:hover {
   background: #0056b3;
   color: #ffffff;
 }
@@ -171,7 +171,7 @@
     padding: 5px 0;
     margin-bottom: 8px;
   }
-  .buyBtn {
+  .buyButton {
     padding: 9px;
     font-size: 0.7rem;
     border-radius: 8px;

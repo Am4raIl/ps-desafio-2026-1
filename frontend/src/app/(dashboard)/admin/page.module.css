@@ -1,0 +1,15 @@
+.topContainer {
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #f8fafc;
+}
+
+.link {
+    background-color: #f8fafc;
+    color: #002d5f;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    margin-left: auto;
+}

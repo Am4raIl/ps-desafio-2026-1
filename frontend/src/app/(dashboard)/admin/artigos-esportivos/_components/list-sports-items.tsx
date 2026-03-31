@@ -1,5 +1,3 @@
-'use client'
-
 import { DashboardContainer } from '@/components/dashboard/dashboard-items'
 import {
   TabbleCellImage,
@@ -19,27 +17,19 @@ import { DialogUpdateSportsItem } from './dialog-update-sports-item'
 import { DialogSportsItemDelete } from './dialog-delete-sports-item'
 import { DialogInformationSportsItem } from './dialog-information-sports-item'
 import { DialogCreateSportsItem } from './dialog-create-sports-item'
-import { useEffect, useState } from 'react'
 
-export default function ListSportsItems() {
-  const [sportingGoods, setSportingGoods] = useState<sportsItemType[]>([])
+export default async function ListSportsItems() {
+  const { response } = await api<sportsItemType[]>('GET', '/sporting-goods')
 
-  useEffect(() => {
-    async function getSportingGoods() {
-      const { response, error } = await api('GET', '/sporting-goods')
-      if (response) setSportingGoods(response as sportsItemType[]);
-      else console.error(error?.message)
-    }
-    getSportingGoods()
-  }, [])
-
-  if (!sportingGoods) {
+  if (!response) {
     return (
       <DashboardContainer className="text-destructive">
         Não foi possível obter os artigos esportivos.
       </DashboardContainer>
     )
   }
+
+  const sportingGoods: sportsItemType[] = response
 
   return (
     <>
@@ -77,7 +67,6 @@ export default function ListSportsItems() {
                 <TableCell>{sportsItem.release_year}</TableCell>
                 <TableCell>{sportsItem.quantity}</TableCell>
                 <TableCell>{sportsItem.category.name || 'Nenhuma'}</TableCell>
-
                 <TableCell className="flex justify-end gap-2">
                   <DialogInformationSportsItem id={sportsItem.id}>
                     <Button variant="default-inverse" size="icon">

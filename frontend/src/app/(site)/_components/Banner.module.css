@@ -1,36 +1,28 @@
-.banner {
+.image {
   width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  background: #002d5f;
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
-.bannerImg {
-  width: 100%;
-  height: auto;
+  height: 420px;
   display: block;
   object-fit: cover;
-  max-height: 420px;
   object-position: center top;
-  transition: transform 0.6s ease;
 }
 
-.banner:hover .bannerImg {
+.image{
+  transition: transform 0.5s ease;
+}
+
+.image:hover{
   transform: scale(1.02);
 }
 
 @media (max-width: 768px) {
-  .bannerImg {
-    max-height: 200px;
+  .image {
+    height: 200px;
     object-position: center center;
   }
 }
 
 @media (max-width: 480px) {
-  .bannerImg {
-    max-height: 150px;
+  .image {
+    height: 150px;
   }
 }

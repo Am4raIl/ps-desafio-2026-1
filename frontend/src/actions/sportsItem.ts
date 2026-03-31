@@ -20,3 +20,9 @@ export async function destroySportsItem(id: string) {
     if (!res.error) revalidatePath('/admin/sporting-goods')
     return JSON.stringify(res)
 }
+
+export async function buySportsItem(id: string) {
+    const res = await api('POST', `/sporting-goods/${id}/buy`)
+    if (!res.error) revalidatePath('/')
+    return JSON.stringify(res)
+}

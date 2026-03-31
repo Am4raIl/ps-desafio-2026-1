@@ -1,5 +1,3 @@
-'use client'
-
 import { DashboardContainer } from '@/components/dashboard/dashboard-items'
 import {
   Table,
@@ -10,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/dashboard/table'
-
 import { categoryType } from '@/types/category'
 import { Button } from '@/components/button'
 import { LuInfo, LuPen, LuPlus, LuTrash } from 'react-icons/lu'
@@ -18,27 +15,20 @@ import { DialogUpdateCategory } from './dialog-update-category'
 import { DialogCategoryDelete } from './dialog-delete-category'
 import { DialogInformationCategory } from './dialog-information-category'
 import { DialogCreateCategory } from './dialog-create-category'
-import React, { useEffect, useState } from 'react'
 import { api } from '@/services/api'
 
-export default function ListCategory() {
-  const [categories, setCategories] = useState<categoryType[]>([])
-  useEffect(() => {
-    async function getCategories(){
-      const { response, error } = await api('GET', '/category')
-      if (response) setCategories(response as categoryType[])
-      else console.error(error?.message)
-    }
-    getCategories()
-  }, [])
+export default async function ListCategories() {
+  const { response } = await api<categoryType[]>('GET', '/category')
 
-  if (!categories) {
+  if (!response) {
     return (
       <DashboardContainer className="text-destructive">
         Não foi possível obter as categorias.
       </DashboardContainer>
     )
   }
+
+  const categories: categoryType[] = response
 
   return (
     <>
