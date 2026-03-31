@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BuySportingGoodsRequest;
 use App\Models\SportingGoods;
 use App\Http\Requests\StoreSportingGoodsRequest;
 use App\Http\Requests\UpdateSportingGoodsRequest;
@@ -88,5 +89,16 @@ class SportingGoodsController extends Controller
         $sportingGoods = $this->sportingGoods->findOrFail($id);
         $sportingGoods->delete();
         return response()->json(['message' => 'Artigo esportivo deletado!']);
+    }
+
+    public function buy($id): JsonResponse
+    {
+        $sportingGoods = $this->sportingGoods->findOrFail($id);
+        if($sportingGoods->quantity <= 0){
+            return response()->json(['message' => 'Produto indisponível'], Response::HTTP_BAD_REQUEST);
+        }
+        $sportingGoods->quantity -= 1;
+        $sportingGoods->save();
+        return response()->json(['data' => $sportingGoods, 'message' => 'Compra realizada com sucesso!'], Response::HTTP_OK);
     }
 }
