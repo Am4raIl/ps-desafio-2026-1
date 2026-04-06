@@ -1,51 +1,106 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    gap: 0.6rem;
+.page {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
-.name {
-    color: #002d5f;
-    padding: 0.7rem 1rem;
-    border-radius: 15px;
+.backLink {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: block;
 }
 
-.details {
-    color: #002d5f;
-    margin-bottom: 0.5rem;
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 20px;
+}
+
+.imageContainer {
+  background-color: #f0f2f5;
+  border-radius: 10px;
+  flex: 1; 
+  min-width: 300px; 
+  text-align: center;
+  padding: 20px;
 }
 
 .image {
-    border-radius: 50px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.7s ease;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
-.brand, .price, .releaseYear, .quantity, .category{
-    color: #002d5f;
-    width: 25%;
-    text-align: center;
-    padding: 0.5rem;
-    border-radius: 15px;
-    box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    transition: transform 0.7s ease;
-    cursor: pointer;
-    z-index: 10;
+.details {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.image:hover, .brand:hover, .price:hover, .releaseYear:hover, .quantity:hover, .category:hover {
-    transform: scale(1.03);
-    color: #0056b3;
+.brand {
+  color: #0056b3;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-    .brand, .price, .releaseYear, .quantity, .category{
-        width: 100%;
-    }
+.name {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 24px;
+  color: #002d5f;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.square {
+  background-color: #f5f7fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.squareItem {
+  display: flex;
+  justify-content: space-between; 
+  margin-bottom: 5px;
+}
+
+.buyButton {
+  background-color: #002d5f;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buyButton:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+.notFound {
+  text-align: center;
+  margin-top: 100px;
 }
