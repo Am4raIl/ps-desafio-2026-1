@@ -55,7 +55,7 @@ Antes de iniciar, certifique-se de ter instalado em sua máquina:
 Clone o projeto para sua máquina:
 
 ```bash
-git clone link-do-projeto
+git clone https://github.com/Am4raIl/ps-desafio-2026-1
 ```
 
 ---
